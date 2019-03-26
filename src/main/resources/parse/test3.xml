@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<parsing sign="DD">
+	<bytes initial="HexStringToBytes">
+		<verifys>
+			<head text="AA"></head>
+			<tail text="BB"></tail>
+		</verifys>
+		<byte parsType="toHexString" index="0" offset="2">
+			sign
+		</byte>
+		<default value="123456">
+			default
+		</default>
+		<foreach index="2" endIndex ="2" itemLength="4" key ="test">
+			<include id = "test1" />
+		</foreach>
+	</bytes>
+	<bytes id="test1">
+		<byte parsType="toHexString" index="0" offset="2">
+			aa
+		</byte>
+		<byte parsType="toHexString" index="2" offset="2">
+			bb
+		</byte>															
+	</bytes>
+</parsing>

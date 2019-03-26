@@ -1,0 +1,16 @@
+package com.parsing.beanFactory;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.lang.annotation.ElementType;
+
+@Target(ElementType.TYPE) 
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Factory {
+
+    /**
+     * 用来表示对象的唯一id
+     */
+	String value() default "";
+} 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<parsing sign="CC">
+	<bytes initial="HexStringToBytes">
+		<verifys>
+			<head text="AA"></head>
+			<tail text="BB"></tail>
+		</verifys>
+		<byte parsType="toHexString" index="2" offset="4">
+			sign
+		</byte>
+	</bytes>
+</parsing>
