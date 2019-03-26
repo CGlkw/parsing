@@ -60,12 +60,19 @@ runParse.init(path);
 </parsing>
 ```
 * `<parsing sign="demo" resultType=""></parsing>` parsing标签为root标签，sign属性代表此配置的唯一标识，不可重复！resultType属性用来配置你的解析后属性返回值，默认为Map
+------
 *  `<bytes initial="HexStringToBytes"></bytes>`bytes标签为一级标签，可包含多个，作为解析入口的bytes标签不能含有id属性，含有id属性的标签说明此标签是一个分支标签，initial属性是用来初始话数据，以及初始化方法。项目内包含有几个初始话的方法，如需扩展，只需继承`com.parsing.initialData.factory.AbstractInitailData`类，重写initialData方法，并用`@Factory("value")`来注解即可，value的值就是你的initial属性值。
+------
 * `<verifys></verifys>`标签为二级标签，此标签内部用来编写你的数据验证方法。
+------
 * `<byte parsType="toHexString" index="0" offset="2" operator="sign / 10.0">sign</byte>`标签为二级标签,表示解析的每一个字段，标签内容表示解析后的字段名，parsType属性表示解析方法，可继承`com.parsing.pars.factory.AbstractParsing`类，重写pars方法，并用`@Factory("value")`注解，来扩展你的解析方法。index属性表示此字段的数据位置，offset表示偏移量，operator可用于后续对对数据的计算（适用与ognl表达式）。
+------
 * `<bit parsType="bit" index="0" offset="2">overVoltage_alarm</bit>`标签为三级标签，只能包含以`<byte>`标签内部，用来处理位数据，属性值与`<byte>`标签类似。
+------
 * `<default value="123456">default</default>`标签为二级标签,用来为你的结果里面添加默认值。
+------
 * 此外还有各种判断循环标签,如上，if标签采用ognl表达式。此类标签为二级标签，判断结果用`<include id="">`标签表示，id为对应的`<bytes>`标签
+------
 #### 3. 解析数据
 ```
 T t = ToParsing.toPars("demo", data, T.class);
